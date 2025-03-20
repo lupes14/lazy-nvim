@@ -54,11 +54,11 @@ wk.add({
   { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find Recent Files" },
   -- Git
   { "<leader>g", group = "Git", mode = {"n", "v"} },
-  { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+  { "<leader>gb", function() Snacks.picker.git_branches({ title = "  Git Branches  |  <C-a> - Create New Branch  |  <C-x> - Delete Branch  ", }) end, desc = "Git Branches" },
   { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
   { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
   { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-  { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+  { "<leader>gs", function() Snacks.picker.git_status({ title = "  Git Status  |  <Tab> to Stage Files  " }) end, desc = "Git Status" },
   { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
   { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
   { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
