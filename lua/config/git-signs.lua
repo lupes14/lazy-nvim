@@ -21,7 +21,6 @@ function M.setup()
       border = 'rounded',
     },
     on_attach = function(bufnr)
-      -- local gs = package.loaded.gitsigns
       vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gh', '<cmd>Gitsigns diffthis<CR>', { noremap = true })
     end
   }

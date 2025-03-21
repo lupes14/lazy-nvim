@@ -1,6 +1,5 @@
 -- lua/config/vim/keymaps.lua
 local wk = require("which-key")
-local Snacks = require("snacks")
 
 wk.add({
   -- Disable keys
@@ -27,9 +26,13 @@ wk.add({
   { "<C-M-l>", "<C-\\><C-n>:FloatermPrev<CR>", mode = "t" },
   { "<C-M-k>", "<C-\\><C-n>:FloatermKill!<CR>", mode = "t" },
   { "<C-M-j>", "<C-\\><C-n>", mode = "t" },
+  -- Reference Navigation
+  { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+  { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
   -- Base Leader Key maps
-  { "<leader>,", function() Snacks.scratch.select() end, desc = "Scrach Buffer History", icon = { icon = "", color = "green", hl = "None" }  },
   { "<leader>'", function() Snacks.scratch() end, desc = "Scratch Buffer", icon = { icon = "", color = "yellow", hl = "None" }  },
+  { "<leader>\"", function() Snacks.scratch.select() end, desc = "Scrach Buffer History", icon = { icon = "", color = "green", hl = "None" }  },
+  { "<leader>,", function() Snacks.picker.registers() end, desc = "Registers/Clipboard", icon = { icon = "", color = "green", hl = "None" }  },
   { "<leader>.", function() Snacks.picker.buffers() end, desc = "Buffer History", icon = { icon = "", color = "green", hl = "None" }  },
   { "<leader>?", function() Snacks.picker.notifications() end, desc = "Notification History", icon = { icon = "", color = "green", hl = "None" } },
   { "<leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
@@ -63,7 +66,7 @@ wk.add({
   { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
   { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
   -- Operations
-  { "<leader>j", group = "Operations", mode = {"n", "v"}, icon = { icon = "", color = "grey", hl = "None" } },
+  { "<leader>j", group = "Operations", mode = {"n", "v"}, icon = { icon = "󰡢", color = "grey", hl = "None" } },
   { "<leader>jy", "\"+y", mode = {"n", "v"}, desc = "Yank Into Clipboard", icon = { icon = "", color = "grey", hl = "None" } },
   { "<leader>jY", "\"+Y", mode = {"n", "v"}, desc = "Yank Entire Line Into Clipboard", icon = { icon = "", color = "grey", hl = "None" } },
   { "<leader>jd", "\"_d", mode = {"n", "v"}, desc = "Delete to Void", icon = { icon = "󰇾", color = "grey", hl = "None" } },
@@ -77,24 +80,14 @@ wk.add({
   -- Grep/Search
   { "<leader>s", group = "Grep/Search" },
   { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep Through Buffers", icon = { icon = "󰈔", color = "cyan", hl = "None" } },
-  { "<leader>sf", function() Snacks.picker.lines() end, desc = "Grep Through File", icon = { icon = "󰈔", color = "cyan", hl = "None" } },
+  { "<leader>sf", function() Snacks.picker.lines() end, desc = "Grep Through Lines in File", icon = { icon = "󰈔", color = "cyan", hl = "None" } },
   { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep Through System", icon = { icon = "󰈔", color = "cyan", hl = "None" } },
-  { "<leader>s\"", function() Snacks.picker.registers() end, desc = "Search through Registers" },
   { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Search through Autocmds" },
+  { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Search through Keymaps" },
+  { "<leader>su", function() Snacks.picker.undo() end, desc = "Search through Undo History" },
+  { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Search through Buffer Diagnostics" },
   { "<leader>sc", function() Snacks.picker.commands() end, desc = "Search through VIM Commands" },
   { "<leader>sC", function() Snacks.picker.colorschemes() end, desc = "Search through VIM Colorschemes" },
-  { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Search through Buffer Diagnostics" },
-  { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Search through Project Diagnostics" },
-  { "<leader>sh", function() Snacks.picker.help() end, desc = "Search through VIM Help Pages" },
-  { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Search through VIM Highlights" },
-  { "<leader>si", function() Snacks.picker.icons() end, desc = "Search through Icons" },
-  { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Search through Keymaps" },
-  { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Search through Jumps" },
-  { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Search through Location Lists" },
-  { "<leader>sm", function() Snacks.picker.man() end, desc = "Search through Man Pages" },
-  { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search through Plugin Specs" },
-  { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Search through Quickfix List" },
-  { "<leader>su", function() Snacks.picker.undo() end, desc = "Search through Undo History" },
   -- LSP
   { "<leader>l", group = "LSP", icon = { icon = "󰙨", color = "green", hl = "None" } },
   { "<leader>ld", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
@@ -106,17 +99,19 @@ wk.add({
   { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   -- Toggle Options Group
   { "<leader>t", group = "Toggle Options" },
-  -- Workspace Options Group
-  { "<leader>w", group = "Workspace Options", mode = {"n", "v"}, icon = { icon = "󱍼", color = "grey", hl = "None" } },
+  -- These options come from the lazy loaded snacks configurations at the bottom of the file
+  -- Misc. Options Group
+  { "<leader>w", group = "Misc. Options", mode = {"n", "v"}, icon = { icon = "󱍼", color = "grey", hl = "None" } },
+  { "<leader>wa", function() Snacks.notifier.hide() end, desc = "Clear Notifications", icon = { icon = "󰇾", color = "grey", hl = "None" } },
   { "<leader>wc", ":noh<CR>", mode = {"n", "v"}, desc = "Clear Highlighted Search Selection", icon = { icon = "󰇾", color = "grey", hl = "None" } },
-  { "<leader>wn", function() Snacks.notifier.hide() end, desc = "Clear Notifications", icon = { icon = "󰇾", color = "grey", hl = "None" } },
-  -- Other
-  { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-  { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-  { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+  { "<leader>wg", function() Snacks.lazygit() end, desc = "Lazygit" },
+  -- Help Documentation
+  { "<leader>h", group = "Documentation", icon = { icon = "", color = "grey", hl = "None" } },
+  { "<leader>hm", function() Snacks.picker.man() end, desc = "Man Pages" },
+  { "<leader>hv", function() Snacks.picker.help() end, desc = "VIM Help Pages" },
   -- Neovim News
   {
-    "<leader>wN",
+    "<leader>hN",
     desc = "Neovim News",
     function()
       Snacks.win({
@@ -140,7 +135,6 @@ wk.add({
     icon = { icon = "󱀁", color = "yellow", hl = "None" }
   }
 })
-
 
 -- Set Toggle Options
 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")

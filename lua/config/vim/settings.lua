@@ -11,8 +11,8 @@ vim.cmd [[
   highlight LineNr ctermbg=NONE guibg=NONE
   highlight nonText ctermbg=NONE guibg=NONE
   highlight EndOfBuffer ctermbg=NONE guibg=NONE
-  highlight Search ctermfg=black ctermbg=111 guifg=#000000 guibg=#C792EA
-  highlight IncSearch ctermfg=black ctermbg=176 guifg=#000000 guibg=#81AAFF
+  highlight Search ctermfg=black ctermbg=111
+  highlight IncSearch ctermfg=black ctermbg=176
   highlight SnacksIndentColor guifg=#d7afff ctermfg=183
 ]]
 
