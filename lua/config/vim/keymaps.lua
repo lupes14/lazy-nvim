@@ -38,7 +38,6 @@ wk.add({
   { "<leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
   { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History", icon = { icon = "", color = "green", hl = "None" } },
   { "<leader><leader>", function() Snacks.picker.resume() end, desc = "Last Open Picker", icon = { icon = "󰼨", color = "yellow", hl = "None" } },
-  { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer", icon = { icon = "󰙅", color = "yellow", hl = "None" } },
   { "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom", icon = { icon = "", color = "yellow", hl = "None" } },
   -- Buffers
   { "<leader>b", group = "Buffers", mode = {"n", "v"}, icon = { icon = "", color = "green", hl = "None" } },
@@ -49,12 +48,13 @@ wk.add({
   { "<leader>t", group = "Tabs", icon = { icon = "󰓩", color = "yellow", hl = "None" } },
   -- Telescope
   { "<leader>f", group = "Telescope", icon = { icon = "", color = "green", hl = "None" }},
-  { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Vim Config Files" },
-  { "<leader>ff", function() Snacks.picker.files({ cwd = vim.fn.expand("%:p:h") }) end, desc = "Find Files in Current File Directory" },
-  { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-  { "<leader>fl", function() Snacks.picker.files() end, desc = "Find Files where VIM Was Launched" },
+  { "<leader>fe", function() Snacks.explorer({ title = " File Explorer | " }) end, desc = "File Explorer", icon = { icon = "󰙅", color = "yellow", hl = "None" } },
+  { "<leader>ff", function() Snacks.picker.files({ title = " Files in Current Directory | ", cwd = vim.fn.expand("%:p:h") }) end, desc = "Find Files in Current File Directory" },
+  { "<leader>fg", function() Snacks.picker.git_files({ title = " Files in Git Repository | " }) end, desc = "Find Git Files" },
+  { "<leader>fl", function() Snacks.picker.files({ title = " Files where VIM Launched | " }) end, desc = "Find Files where VIM Was Launched" },
   { "<leader>fp", function() Snacks.picker.projects() end, desc = "Find Projects" },
-  { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find Recent Files" },
+  { "<leader>fr", function() Snacks.picker.recent({ title = " Recent Files | " }) end, desc = "Find Recent Files" },
+  { "<leader>fz", function() Snacks.picker.files({ title = " VIM Config Files | ", cwd = vim.fn.stdpath("config") }) end, desc = "Find Vim Config Files" },
   -- Git
   { "<leader>g", group = "Git", mode = {"n", "v"} },
   { "<leader>gb", function() Snacks.picker.git_branches({ title = "  Git Branches  |  <C-a> - Create New Branch  |  <C-x> - Delete Branch  ", }) end, desc = "Git Branches" },

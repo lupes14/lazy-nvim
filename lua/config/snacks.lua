@@ -1,4 +1,4 @@
--- lua/config/snacks.lua 
+-- lua/config/snacks.lua
 -- Locals
 local M = {}
 
@@ -26,11 +26,11 @@ local disabled_features = {
 }
 
 local enabled_features_w_default_configs = {
-  "input", "bigfile", "explorer", "notify", "quickfile", "scope", "statuscolumn", "styles", "words"
+  "input", "bigfile", "notify", "quickfile", "scope", "statuscolumn", "styles", "words"
 }
 
 local pickers_w_custom_configs = {
-  "files", "git_branches", "git_log", "git_status", "git_stash", "git_diff", "git_log_file", "lines", "grep", "grep_buffers", "buffers", "registers", "notifications", "autocmds", "commands", "keymaps", "undo", "diagnostics_buffer", "colorschemes", "command_history", "search_history"
+  "explorer", "files", "projects", "recent", "git_branches", "git_log", "git_files", "git_status", "git_stash", "git_diff", "git_log_file", "lines", "grep", "grep_buffers", "buffers", "registers", "notifications", "autocmds", "commands", "keymaps", "undo", "diagnostics_buffer", "colorschemes", "command_history", "search_history"
 }
 
 M.opts = {
@@ -95,7 +95,7 @@ end
 -- Dynamically configure snacks picker feature with custom settings
 for _, feature in ipairs(pickers_w_custom_configs) do
   local preview_value
-  if feature == "command_history" or feature == "search_history" then
+  if feature == "command_history" or feature == "search_history" or feature == "files" or feature == "recent" then
     preview_value = false
   else
     preview_value = true
@@ -103,8 +103,9 @@ for _, feature in ipairs(pickers_w_custom_configs) do
 
   if not vim.tbl_contains(disabled_features, feature) then
     M.opts.picker.sources[feature] = {
-      layout = picker_layout(preview_value),
-      hidden = feature == "explorer" or feature == "files"
+      layout  = picker_layout(preview_value),
+      hidden  = feature == "files" or feature == "grep" or feature == "explorer" or feature == "git_files" or feature == "recent",
+      ignored = feature == "explorer",
     }
   end
 end
