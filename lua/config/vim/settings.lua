@@ -1,6 +1,6 @@
 -- lua/config/vim/settings.lua
 -- Set Cursor
-vim.o.guicursor = ""
+vim.o.guicursor = ''
 
 -- Set color scheme
 vim.cmd('colorscheme night-owl')
@@ -19,7 +19,7 @@ vim.cmd [[
 -- Line settings
 vim.o.number = true
 vim.o.relativenumber = true
-vim.cmd("highlight LineNr ctermfg=Grey guifg=Grey")
+vim.cmd('highlight LineNr ctermfg=Grey guifg=Grey')
 
 -- Mode settings
 vim.o.showmode = false
@@ -39,10 +39,10 @@ vim.o.scrolloff = 8
 vim.o.updatetime = 50
 
 -- Set floating terminal settings
-vim.g.floaterm_title = " Terminal ($1/$2) "
+vim.g.floaterm_title = ' Terminal ($1/$2) '
 
 -- Enable hidden buffers
 vim.o.hidden = true
 
 -- Diable LSP logging, set to debug if need to debug issues
-vim.lsp.set_log_level("off")
+vim.lsp.set_log_level('off')

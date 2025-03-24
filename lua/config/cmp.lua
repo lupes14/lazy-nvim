@@ -17,10 +17,10 @@ function M.setup()
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ['<Up>'] = cmp.mapping(function() return end, { 'i', 'c' }),
-      ['<Down>'] = cmp.mapping(function() return end, { 'i', 'c' }),
-      ['<Left>'] = cmp.mapping(function() return end, { 'i', 'c' }),
-      ['<Right>'] = cmp.mapping(function() return end, { 'i', 'c' }),
+      ['<Up>'] = cmp.mapping(function() end, { 'i', 'c' }),
+      ['<Down>'] = cmp.mapping(function() end, { 'i', 'c' }),
+      ['<Left>'] = cmp.mapping(function() end, { 'i', 'c' }),
+      ['<Right>'] = cmp.mapping(function() end, { 'i', 'c' }),
     }),
 
     sources = {

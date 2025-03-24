@@ -2,6 +2,6 @@
 return {
     'haishanh/night-owl.vim',
     config = function()
-        require("config.night-owl").setup()
+        require('config.night-owl').setup()
     end,
 }

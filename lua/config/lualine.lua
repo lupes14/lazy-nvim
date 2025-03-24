@@ -3,7 +3,7 @@ local M = {}
 
 local function trailing_spaces()
   local space = vim.fn.search([[\s\+$]], 'nwc')  -- Search for trailing whitespace
-  return space ~= 0 and "⚠ TW:"..space or ""     -- Return "TW:count" if spaces are found, else empty
+  return space ~= 0 and '⚠ TW:'..space or ''     -- Return 'TW:count' if spaces are found, else empty
 end
 
 local function mixed_indent()
@@ -64,7 +64,7 @@ function M.setup()
       },
       lualine_z = {
           function()
-            return string.format("Ln:%d, Col:%d", vim.fn.line("."), vim.fn.col("."))
+            return string.format('Ln:%d, Col:%d', vim.fn.line('.'), vim.fn.col('.'))
           end
       },
     },

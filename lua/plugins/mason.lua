@@ -1,8 +1,8 @@
 -- lua/plugins/mason.lua
 return {
-  "williamboman/mason.nvim",
-  dependencies = { "williamboman/mason-lspconfig.nvim" },
+  'williamboman/mason.nvim',
+  dependencies = { 'williamboman/mason-lspconfig.nvim' },
   config = function()
-    require("config.mason").setup()
+    require('config.mason').setup()
   end,
 }
