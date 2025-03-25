@@ -1,5 +1,7 @@
 -- lua/config/vim/keymaps.lua
 local wk = require('which-key')
+local dap = require("dap")
+local dapui = require("dapui")
 
 wk.add({
   -- Disable keys
@@ -46,9 +48,18 @@ wk.add({
   { '<leader>bn', ':tabnext<CR>', mode = {'n', 'v'}, desc = 'Switch to Next Buffer tab', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
   { '<leader>bp', ':tabprevious<CR>', mode = {'n', 'v'}, desc = 'Switch to Previous Buffer Tab', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
   { '<leader>t', group = 'Tabs', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
+  -- Debuggers
+  { '<leader>d', group = 'Debuggers', mode = {'n'}, icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>db', function() dap.toggle_breakpoint() end, desc = 'Add breakpoint', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>dc', function() dap.continue() end, desc = 'Continue', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>di', function() dap.step_into() end, desc = 'Step Into', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>do', function() dap.step_out() end, desc = 'Step Out', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>dO', function() dap.step_over() end, desc = 'Step Over', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>dq', function() dap.terminate() end, desc = 'Quit Debugger', icon = { icon = '', color = 'red', hl = 'None' } },
+  { '<leader>du', function() dapui.toggle() end, desc = 'Toggle DAP UI', icon = { icon = '', color = 'red', hl = 'None' } },
   -- Telescope
   { '<leader>f', group = 'Telescope', icon = { icon = '', color = 'green', hl = 'None' }},
-  { '<leader>fd', function() Snacks.picker.files({ cwd = '~/aaaaa/repos' }) end, desc = 'Find repository files in development directory'} ,
+  { '<leader>fd', function() Snacks.picker.files({ cwd = '~/aaaaa/repos' }) end, desc = 'Find repository files in development directory' } ,
   { '<leader>fe', function() Snacks.explorer({ title = ' File Explorer | ' }) end, desc = 'File Explorer', icon = { icon = '󰙅', color = 'yellow', hl = 'None' } },
   { '<leader>ff', function() Snacks.picker.files({ title = ' Files in Current Directory | ', cwd = vim.fn.expand('%:p:h') }) end, desc = 'Find Files in Current File Directory' },
   { '<leader>fg', function() Snacks.picker.git_files({ title = ' Files in Git Repository | ' }) end, desc = 'Find Git Files' },
@@ -68,10 +79,10 @@ wk.add({
   { '<leader>gf', function() Snacks.picker.git_log_file() end, desc = 'Git Log File' },
   -- Operations
   { '<leader>j', group = 'Operations', mode = {'n', 'v'}, icon = { icon = '󰡢', color = 'grey', hl = 'None' } },
-  { '<leader>jy', '\'+y', mode = {'n', 'v'}, desc = 'Yank Into Clipboard', icon = { icon = '', color = 'grey', hl = 'None' } },
-  { '<leader>jY', '\'+Y', mode = {'n', 'v'}, desc = 'Yank Entire Line Into Clipboard', icon = { icon = '', color = 'grey', hl = 'None' } },
-  { '<leader>jd', '\'_d', mode = {'n', 'v'}, desc = 'Delete to Void', icon = { icon = '󰇾', color = 'grey', hl = 'None' } },
-  { '<leader>jp', '\'_ddP', mode = {'n', 'v'}, desc = 'Paste Over and Delete Line to Void', icon = { icon = '󰬳', color = 'grey', hl = 'None' } },
+  { '<leader>jy', '"+y', mode = {'n', 'v'}, desc = 'Yank Into Clipboard', icon = { icon = '', color = 'grey', hl = 'None' } },
+  { '<leader>jY', '":+Y', mode = {'n', 'v'}, desc = 'Yank Entire Line Into Clipboard', icon = { icon = '', color = 'grey', hl = 'None' } },
+  { '<leader>jd', '"_d', mode = {'n', 'v'}, desc = 'Delete to Void', icon = { icon = '󰇾', color = 'grey', hl = 'None' } },
+  { '<leader>jp', '"_ddP', mode = {'n', 'v'}, desc = 'Paste Over and Delete Line to Void', icon = { icon = '󰬳', color = 'grey', hl = 'None' } },
   { '<leader>jr', ':%s#\\<<C-r><C-w>\\>#<C-r><C-w>#gI<Left><Left><Left>', mode = 'n', desc = 'Replace Word Under Cursor', icon = { icon = '󰛔', color = 'grey' , hl = 'None' } },
   { '<leader>jR', function() Snacks.rename.rename_file() end, desc = 'Rename File', icon = { icon = '󰈔', color = 'grey', hl = 'None' } },
   -- Package Managers
