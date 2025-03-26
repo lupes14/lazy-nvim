@@ -33,8 +33,14 @@ end
 -- Generate greeting based on time of day
 local function get_greeting()
   local hour = tonumber(vim.fn.strftime('%H'))
-  local part_id = math.floor((hour + 6) / 8) + 1
-  local day_part = ({ 'evening', 'morning', 'afternoon', 'evening' })[part_id]
+  local day_part
+  if hour < 12 then
+    day_part = "morning"
+  elseif hour < 18 then
+    day_part = "afternoon"
+  else
+    day_part = "evening"
+  end
 
   return {
     align = 'center',
