@@ -10,7 +10,7 @@ local disabled_features = {
 
 -- Features with default configurations
 local enabled_features_w_default_configs = {
-  'input', 'bigfile', 'notify', 'quickfile', 'scope', 'statuscolumn', 'styles', 'words'
+  'input', 'bigfile', 'notify', 'quickfile', 'scope', 'styles', 'words'
 }
 
 -- Pickers with custom configurations
@@ -55,10 +55,16 @@ local function picker_layout(preview)
     preset = 'vscode',
     preview = preview,
     layout = {
+      box    = 'vertical',
+      height = 0.40,
+      row    = 0,
       border = 'rounded',
-      width = 0.5,
-      height = 0.4,
-      box = 'vertical',
+      { win  = 'input', height = 1, border = 'rounded', title = 'Find {title} {live} {flags}', title_pos = 'center'},
+      {
+        box = 'horizontal',
+        { win = 'list' },
+        { win = 'preview', border = 'left', width = 0.6 },
+      },
     },
   }
 end
@@ -143,6 +149,9 @@ _|'''''|_|'''''|_|'''''|_| ''''|_|'''''|_|'''''|
     enabled = true,
     sources = {},
   },
+  statuscolumn = {
+    enabled = true,
+  },
 }
 
 M.opts.toggle = {
@@ -182,7 +191,7 @@ end
 
 -- Configure pickers with custom settings
 for _, feature in ipairs(pickers_w_custom_configs) do
-  local preview_value = not (feature == 'command_history' or feature == 'search_history' or feature == 'files' or feature == 'recent')
+  local preview_value = not (feature == 'command_history' or feature == 'search_history')
 
   if not vim.tbl_contains(disabled_features, feature) then
     M.opts.picker.sources[feature] = {

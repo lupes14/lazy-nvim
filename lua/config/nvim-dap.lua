@@ -32,7 +32,7 @@ require("nvim-dap-virtual-text").setup({
 })
 
 -- Configure dap-python with global virtualenv
-dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+dap_python.setup("~/.venv/debugpy/bin/python")
 
 vim.fn.sign_define("DapBreakpoint", {
   text = "",

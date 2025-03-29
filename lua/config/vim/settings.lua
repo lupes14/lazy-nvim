@@ -14,6 +14,11 @@ vim.cmd [[
   highlight Search ctermfg=black ctermbg=111
   highlight IncSearch ctermfg=black ctermbg=176
   highlight SnacksIndentColor guifg=#d7afff ctermfg=183
+  highlight FloatBorder ctermfg=183
+  highlight FloatermBorder ctermfg=183
+  highlight CmpBorder ctermfg=183
+  highlight Pmenu ctermfg=white ctermbg=233
+  highlight PmenuSel ctermbg=111 ctermfg=black
 ]]
 
 -- Line settings
@@ -46,3 +51,10 @@ vim.o.hidden = true
 
 -- Diable LSP logging, set to debug if need to debug issues
 vim.lsp.set_log_level('off')
+
+-- Remove Right Click mouse pop-up
+vim.api.nvim_set_keymap('n', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('c', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', '<RightMouse>', '<Nop>', { noremap = true, silent = true })

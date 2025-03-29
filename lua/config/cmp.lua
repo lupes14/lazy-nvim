@@ -30,12 +30,20 @@ function M.setup()
     },
 
     window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      completion = {
+        border = "rounded",
+        scrollbar = false,
+        winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:PmenuSel",
+      },
+      documentation = {
+        border = "rounded",
+        scrollbar = false,
+        winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder",
+      },
     },
 
     experimental = {
-      ghost_text = true,
+      ghost_text = false,
     },
   })
 

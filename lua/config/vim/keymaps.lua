@@ -17,8 +17,8 @@ wk.add({
   { 'N', 'Nzzzv', mode = 'n', desc = 'Skip back a search result and focus buffer' },
   { 'J', 'mzJz', mode = 'n', desc = 'Pull line below up to current line' },
   -- Move lines in visual mode
-  { 'K', ':m "<-2<CR>gv=gv', mode = 'v' },
-  { 'J', ':m ">+1<CR>gv=gv', mode = 'v' },
+  { 'K', ":m '<-2<CR>gv=gv", mode = 'v' },
+  { 'J', ":m '>+1<CR>gv=gv", mode = 'v' },
   -- Terminal (Floaterm)
   { '<C-M-\\>', ':FloatermNew<CR>', mode = 'n' },
   { '<C-M-_>', ':FloatermToggle<CR>', mode = 'n' },
@@ -105,6 +105,7 @@ wk.add({
   { '<leader>ld', function() Snacks.picker.lsp_definitions() end, desc = 'Goto Definition' },
   { '<leader>lD', function() Snacks.picker.lsp_declarations() end, desc = 'Goto Declaration' },
   { '<leader>lr', function() Snacks.picker.lsp_references() end, nowait = true, desc = 'References' },
+  { '<leader>li', function() vim.cmd('Inspect') end, desc = 'Inspect Syntax & Extmarks' },
   { '<leaderer>lI', function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation' },
   { '<leader>ly', function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition' },
   { '<leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols' },
