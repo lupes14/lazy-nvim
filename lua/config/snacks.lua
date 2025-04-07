@@ -42,9 +42,16 @@ local function get_greeting()
     day_part = "evening"
   end
 
+  local function to_title_case(str)
+    return (str:gsub("(%a)([%w_']*)", function(first, rest)
+      return first:upper() .. rest:lower()
+    end))
+  end
+  local username = vim.loop.os_getenv('USER_ALIAS_NAME') or vim.loop.os_get_passwd()['username'] or 'user'
+  username = to_title_case(username)
   return {
     align = 'center',
-    text = { ('“Good %s, Camden”'):format(day_part), hl = 'NonText' },
+    text = { ('“Good %s, %s”'):format(day_part, username), hl = 'NonText' },
     padding = 1
   }
 end
@@ -78,6 +85,9 @@ M.info = {}
 
 M.opts = {
   -- Dashboard Configuration
+  explorer = {
+    replace_netrw = true,
+  },
   dashboard = {
     enabled = true,
     preset = {},
@@ -139,16 +149,17 @@ _|'''''|_|'''''|_|'''''|_| ''''|_|'''''|_|'''''|
     scope = feature_subfeature_toggle(false),
     chunk = { enabled = true, only_current = true, hl = 'SnacksIndentColor' }
   },
-  -- Notifications
+  -- Notifications Config
   notifier = {
     enabled = true,
     style = 'fancy',
   },
-  -- Picker Configuration
+  -- Picker Config
   picker = {
     enabled = true,
     sources = {},
   },
+  -- StatusColumn Config
   statuscolumn = {
     enabled = true,
   },

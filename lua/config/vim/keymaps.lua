@@ -27,7 +27,7 @@ wk.add({
   { '<C-M-h>', '<C-\\><C-n>:FloatermNext<CR>', mode = 't' },
   { '<C-M-l>', '<C-\\><C-n>:FloatermPrev<CR>', mode = 't' },
   { '<C-M-k>', '<C-\\><C-n>:FloatermKill!<CR>', mode = 't' },
-  { '<C-M-j>', '<C-\\><C-n>', mode = 't' },
+  { '<Esc>', '<C-\\><C-n>', mode = 't' },
   -- Reference Navigation
   { ']]',         function() Snacks.words.jump(vim.v.count1) end, desc = 'Next Reference', mode = { 'n', 't' } },
   { '[[',         function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', mode = { 'n', 't' } },
