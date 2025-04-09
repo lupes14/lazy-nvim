@@ -63,13 +63,18 @@ wk.add({
   {
     '<leader>Dd',
     function()
-      vim.diagnostic.open_float(nil, {
-        border = 'rounded',
-        scope = 'cursor',
-        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      })
+      local diagnostics = vim.diagnostic.get(0)
+      if #diagnostics > 0 then
+        vim.diagnostic.open_float(nil, {
+          focusable = true,
+          border = 'rounded',
+          severity_sort = true,
+        })
+      else
+        vim.notify("No diagnostics to show.", vim.log.levels.INFO)
+      end
     end,
-    desc = 'Diagnostics Float',
+    desc = 'Show Diagnostic (styled + interactive)',
     icon = { icon = '', color = 'yellow', hl = 'None' }
   },
   -- Telescope
