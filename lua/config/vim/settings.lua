@@ -58,3 +58,6 @@ vim.api.nvim_set_keymap('i', '<RightMouse>', '<Nop>', { noremap = true, silent =
 vim.api.nvim_set_keymap('c', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+
+-- Adding inline diagnostics
+vim.diagnostic.config({ virtual_text = true })
