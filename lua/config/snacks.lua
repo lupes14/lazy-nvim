@@ -5,7 +5,7 @@
 ----------------------------------------------------------------
 -- Disabled features
 local disabled_features = {
-  'scroll', 'terminal'
+  'scroll', 'terminal', 'image'
 }
 
 -- Features with default configurations
