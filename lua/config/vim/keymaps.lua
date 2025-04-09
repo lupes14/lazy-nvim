@@ -57,9 +57,23 @@ wk.add({
   { '<leader>dO', function() dap.step_over() end, desc = 'Step Over', icon = { icon = '', color = 'red', hl = 'None' } },
   { '<leader>dq', function() dap.terminate() end, desc = 'Quit Debugger', icon = { icon = '', color = 'red', hl = 'None' } },
   { '<leader>du', function() dapui.toggle() end, desc = 'Toggle DAP UI', icon = { icon = '', color = 'red', hl = 'None' } },
+  -- Diagnostics
+  { '<leader>D', group = 'Diagnostics', icon = { icon = '', color = 'yellow', hl = 'None' } },
+  { '<leader>Df', function() Snacks.picker.diagnostics_buffer() end, desc = 'Find Buffer Diagnostics', icon = { icon = '', color = 'yellow', hl = 'None' } },
+  {
+    '<leader>Dd',
+    function()
+      vim.diagnostic.open_float(nil, {
+        border = 'rounded',
+        scope = 'cursor',
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      })
+    end,
+    desc = 'Diagnostics Float',
+    icon = { icon = '', color = 'yellow', hl = 'None' }
+  },
   -- Telescope
   { '<leader>f', group = 'Telescope', icon = { icon = '', color = 'green', hl = 'None' }},
-  { '<leader>fd', function() Snacks.picker.files({ cwd = '~/aaaaa/repos' }) end, desc = 'Find repository files in development directory' } ,
   { '<leader>fe', function() Snacks.explorer({ title = ' File Explorer | ' }) end, desc = 'File Explorer', icon = { icon = '󰙅', color = 'yellow', hl = 'None' } },
   { '<leader>ff', function() Snacks.picker.files({ title = ' Files in Current Directory | ', cwd = vim.fn.expand('%:p:h') }) end, desc = 'Find Files in Current File Directory' },
   { '<leader>fg', function() Snacks.picker.git_files({ title = ' Files in Git Repository | ' }) end, desc = 'Find Git Files' },
@@ -89,24 +103,22 @@ wk.add({
   { '<leader>p', group = 'Package Managers', mode = {'n', 'v'}, icon = { icon = '', color = 'yellow', hl = 'None' } },
   { '<leader>pm', ':Mason<CR>', desc = 'Mason - LSP Package Manager', icon = { icon = '', color = 'yellow', hl = 'None' } },
   { '<leader>pl', ':Lazy<CR>', desc = 'Lazy - NVIM Package Manager', icon = { icon = '', color = 'yellow', hl = 'None' } },
-  -- Grep/Search
-  { '<leader>s', group = 'Grep/Search' },
+  -- Search/Grep
+  { '<leader>s', group = 'Search/Grep' },
+  { '<leader>sa', function() Snacks.picker.autocmds() end, desc = 'Search through Autocmds' },
   { '<leader>sb', function() Snacks.picker.grep_buffers() end, desc = 'Grep Through Buffers', icon = { icon = '󰈔', color = 'cyan', hl = 'None' } },
+  { '<leader>sc', function() Snacks.picker.commands() end, desc = 'Search through VIM Commands' },
   { '<leader>sf', function() Snacks.picker.lines() end, desc = 'Grep Through Lines in File', icon = { icon = '󰈔', color = 'cyan', hl = 'None' } },
   { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep Through System', icon = { icon = '󰈔', color = 'cyan', hl = 'None' } },
-  { '<leader>sa', function() Snacks.picker.autocmds() end, desc = 'Search through Autocmds' },
   { '<leader>sk', function() Snacks.picker.keymaps() end, desc = 'Search through Keymaps' },
   { '<leader>su', function() Snacks.picker.undo() end, desc = 'Search through Undo History' },
-  { '<leader>sd', function() Snacks.picker.diagnostics_buffer() end, desc = 'Search through Buffer Diagnostics' },
-  { '<leader>sc', function() Snacks.picker.commands() end, desc = 'Search through VIM Commands' },
-  { '<leader>sC', function() Snacks.picker.colorschemes() end, desc = 'Search through VIM Colorschemes' },
   -- LSP
   { '<leader>l', group = 'LSP', icon = { icon = '󰙨', color = 'green', hl = 'None' } },
   { '<leader>ld', function() Snacks.picker.lsp_definitions() end, desc = 'Goto Definition' },
   { '<leader>lD', function() Snacks.picker.lsp_declarations() end, desc = 'Goto Declaration' },
   { '<leader>lr', function() Snacks.picker.lsp_references() end, nowait = true, desc = 'References' },
   { '<leader>li', function() vim.cmd('Inspect') end, desc = 'Inspect Syntax & Extmarks' },
-  { '<leaderer>lI', function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation' },
+  { '<leader>lI', function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation' },
   { '<leader>ly', function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition' },
   { '<leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols' },
   { '<leader>lS', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols' },
@@ -117,6 +129,7 @@ wk.add({
   { '<leader>w', group = 'Misc. Options', mode = {'n', 'v'}, icon = { icon = '󱍼', color = 'grey', hl = 'None' } },
   { '<leader>wa', function() Snacks.notifier.hide() end, desc = 'Clear Notifications', icon = { icon = '󰇾', color = 'grey', hl = 'None' } },
   { '<leader>wc', ':noh<CR>', mode = {'n', 'v'}, desc = 'Clear Highlighted Search Selection', icon = { icon = '󰇾', color = 'grey', hl = 'None' } },
+  { '<leader>wC', function() Snacks.picker.colorschemes() end, desc = 'Preview VIM Colorschemes' },
   { '<leader>wg', function() Snacks.lazygit() end, desc = 'Lazygit' },
   -- Help Documentation
   { '<leader>h', group = 'Documentation', icon = { icon = '', color = 'grey', hl = 'None' } },
@@ -124,7 +137,7 @@ wk.add({
   { '<leader>hv', function() Snacks.picker.help() end, desc = 'VIM Help Pages' },
   -- Neovim News
   {
-    '<leader>hN',
+    '<leader>hn',
     desc = 'Neovim News',
     function()
       Snacks.win({
