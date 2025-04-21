@@ -52,9 +52,11 @@ vim.o.hidden = true
 -- Diable LSP logging, set to debug if need to debug issues
 vim.lsp.set_log_level('off')
 
+-- Adding inline diagnostics
+vim.diagnostic.config({ virtual_text = true })
+
 -- Remove Right Click mouse pop-up
-vim.api.nvim_set_keymap('n', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('c', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', '<RightMouse>', '<Nop>', { noremap = true, silent = true })
+vim.cmd([[
+  aunmenu PopUp
+  autocmd! nvim.popupmenu
+]])
