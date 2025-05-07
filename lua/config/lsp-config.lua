@@ -2,25 +2,22 @@
 local M = {}
 
 function M.setup()
-  local lspconfig = require('lspconfig')
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local servers = require("config.mason").setup()
+  local lspconfig = require("lspconfig")
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-  -- Automatically set up LSP servers that Mason installs
-  require('mason-lspconfig').setup_handlers({
-    function(server_name)
-      -- Configure Mason Installed LSP Servers
-      lspconfig[server_name].setup({
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = {'vim', 'Snacks'},
-            },
+  for _, server in ipairs(servers) do
+    lspconfig[server].setup({
+      capabilities = capabilities,
+      settings = server == "lua_ls" and {
+        Lua = {
+          diagnostics = {
+            globals = { "vim", "Snacks" },
           },
         },
-      })
-    end,
-  })
+      } or nil,
+    })
+  end
 end
 
 return M
