@@ -9,7 +9,6 @@ function M.setup()
   require("mason-lspconfig").setup({
     ensure_installed = servers,
     handlers = {
-      -- Default handler for all servers
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,

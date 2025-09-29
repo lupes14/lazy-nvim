@@ -3,6 +3,11 @@
 ----------------------------------------------------------------
 -- Locals
 ----------------------------------------------------------------
+-- Check if vim is running inside TMUX, if so adjust padding for dashboard
+local function get_dashboard_padding()
+  return vim.env.TMUX and 0 or 1
+end
+
 -- Disabled features
 local disabled_features = {
   'scroll', 'terminal', 'image'
@@ -52,7 +57,6 @@ local function get_greeting()
   return {
     align = 'center',
     text = { ('“Good %s, %s”'):format(day_part, username), hl = 'NonText' },
-    padding = 1
   }
 end
 
@@ -99,7 +103,6 @@ M.opts = {
     sections = {
       {
         align = 'center',
-        padding = 1,
         text = {
           { [[
   _  _     ___     ___   __   __   ___   __  __  
@@ -135,7 +138,7 @@ _|'''''|_|'''''|_|'''''|_| ''''|_|'''''|_|'''''|
             { ' | ', hl = 'NonText' },
             { '󰃭 ' .. date , hl = 'Label' },
           },
-          padding = 1,
+          padding = get_dashboard_padding(),
         }
       end,
     },
