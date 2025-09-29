@@ -11,14 +11,14 @@ vim.cmd [[
   highlight LineNr ctermbg=NONE guibg=NONE
   highlight nonText ctermbg=NONE guibg=NONE
   highlight EndOfBuffer ctermbg=NONE guibg=NONE
-  highlight Search ctermfg=black ctermbg=111
-  highlight IncSearch ctermfg=black ctermbg=176
+  highlight Search ctermfg=black ctermbg=111 guifg=black guibg=#d7afff
+  highlight IncSearch ctermfg=black ctermbg=176 guifg=black guibg=#d7af87
   highlight SnacksIndentColor guifg=#d7afff ctermfg=183
-  highlight FloatBorder ctermfg=183
-  highlight FloatermBorder ctermfg=183
+  highlight FloatBorder ctermfg=183 guifg=#d7afff
+  highlight FloatermBorder ctermfg=183 guifg=#d7afff
   highlight CmpBorder ctermfg=183
-  highlight Pmenu ctermfg=white ctermbg=233
-  highlight PmenuSel ctermbg=111 ctermfg=black
+  highlight Pmenu ctermfg=white ctermbg=233 guifg=#ffffff guibg=#1c1c1c
+  highlight PmenuSel ctermbg=111 ctermfg=black guibg=#5f5faf guifg=black
 ]]
 
 -- Line settings
