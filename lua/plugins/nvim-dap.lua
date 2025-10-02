@@ -5,7 +5,10 @@ return {
     dependencies = {
       "nvim-neotest/nvim-nio",
       "rcarriga/nvim-dap-ui",
-      "mfussenegger/nvim-dap-python",
+      {
+        "mfussenegger/nvim-dap-python",
+        build = false,
+      },
       "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
