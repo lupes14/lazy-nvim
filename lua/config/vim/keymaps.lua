@@ -28,6 +28,13 @@ wk.add({
   { '<C-M-l>', '<C-\\><C-n>:FloatermPrev<CR>', mode = 't' },
   { '<C-M-k>', '<C-\\><C-n>:FloatermKill!<CR>', mode = 't' },
   { '<Esc>', '<C-\\><C-n>', mode = 't' },
+  -- Copilot
+  { '<M-l>', '<Plug>(copilot-accept-line)', mode = { 'n', 'v', 'i' } },
+  { '<M-L>', '<Plug>(copilot-accept-word)', mode = { 'n', 'v', 'i' } },
+  { '<M-s>', '<Plug>(copilot-suggest)', mode = { 'n', 'v', 'i' } },
+  { '<M-d>', '<Plug>(copilot-dismiss)', mode = { 'n', 'v', 'i' } },
+  { '<M-n>', '<Plug>(copilot-next)', mode = { 'n', 'v', 'i' } },
+  { '<M-p>', '<Plug>(copilot-previous)', mode = { 'n', 'v', 'i' } },
   -- Reference Navigation
   { ']]',         function() Snacks.words.jump(vim.v.count1) end, desc = 'Next Reference', mode = { 'n', 't' } },
   { '[[',         function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', mode = { 'n', 't' } },
@@ -47,7 +54,10 @@ wk.add({
   { '<leader>bd', function() Snacks.bufdelete() end, desc = 'Delete Current Buffer', icon = { icon = '󰇾', color = 'grey', hl = 'None' }  },
   { '<leader>bn', ':tabnext<CR>', mode = {'n', 'v'}, desc = 'Switch to Next Buffer tab', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
   { '<leader>bp', ':tabprevious<CR>', mode = {'n', 'v'}, desc = 'Switch to Previous Buffer Tab', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
-  { '<leader>t', group = 'Tabs', icon = { icon = '󰓩', color = 'yellow', hl = 'None' } },
+  -- Copilot Chat
+  { '<leader>c', group = 'Copilot', mode = {'n', 'v'}, icon = { icon = '', color = 'cyan', hl = 'None' } },
+  { '<leader>cc', ':CopilotChatOpen<CR>', mode = 'n', desc = 'Open Copilot Chat'},
+  { '<leader>cC', ':CopilotChatClose<CR>', mode = 'n', desc = 'Close Copilot Chat'},
   -- Debuggers
   { '<leader>d', group = 'Debuggers', mode = {'n'}, icon = { icon = '', color = 'red', hl = 'None' } },
   { '<leader>db', function() dap.toggle_breakpoint() end, desc = 'Add breakpoint', icon = { icon = '', color = 'red', hl = 'None' } },
