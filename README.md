@@ -12,7 +12,7 @@
 &nbsp;
 
 ## Overview
-This repository stores a custom tailored NVIM environment used for development built by [@lupes14](https://github.com/lupes14).
+This repository stores a custom tailored NVIM environment used for development, configured by [@lupes14](https://github.com/lupes14).
 
 ![nvim-dashboard](./images/nvim-dashboard.png)
 
@@ -46,6 +46,8 @@ This repository stores a custom tailored NVIM environment used for development b
     - Custom pickers to enable fuzzy finders, grep, and a file explorer
     - Custom notifications
     - Custom indentation with dynamic indent highlighting
+- Configures the GitHub copilot engine with autocomplete capabilities
+- Configures the Copilot Chat interface to engage with AI chat models
 - Configures LSP server integrations
 - Configures LSP specific parsing and syntax highlighting
 - Configures a completion engine (CMP)
@@ -93,6 +95,8 @@ pip3 install debugpy
 
 Then inside the `config/nvim-dap.lua` you need to specifiy the path to the venv storing debugpy.
 
+3) If utilizing Copilot, you need to have NodeJS installed via NPM.
+
 ### Installation
 
 1) Make a `.config` directory with a `nvim` directory inside it
@@ -129,6 +133,8 @@ For a full list of all the snacks plugin feature demos, check out Folke's reposi
 ### Mason Package Manager
 ![mason](./images/mason.png)
 
+### Copilot
+
 ### Floaterm
 ![floaterm](./images/floaterm.png)
 
@@ -137,6 +143,7 @@ For a full list of all the snacks plugin feature demos, check out Folke's reposi
 
 ### Which-Key
 ![which-key](./images/which-key.png)
+
 
 &nbsp;
 
@@ -168,4 +175,5 @@ For a full list of all the snacks plugin feature demos, check out Folke's reposi
 - Which-key: [which-key.nvim](https://github.com/folke/which-key.nvim)
 - Plenary: [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - Vim-be-good: [vim-be-good](https://github.com/ThePrimeagen/vim-be-good)
-
+- GitHub Copilot Engine/Autocompletion: [Copilot-VIM](https://github.com/github/copilot.vim)
+- Copilot Chat Interface: [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim)
