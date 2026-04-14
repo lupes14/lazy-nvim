@@ -3,9 +3,9 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     config = function()
-      require('config.tree-sitter').setup()
+      require('config.tree-sitter')
     end,
-  }
+  },
 }
